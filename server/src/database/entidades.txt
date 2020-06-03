@@ -1,0 +1,35 @@
+POINTS (Pontos de coleta) = {
+    id, 
+    image, 
+    title, 
+    email,
+    whatsapp,
+    latidude,
+    longitude,
+    city, 
+    uf
+}
+ITEMS (Itens para coleta) = {
+    id,
+    title, 
+    image
+}
+POINT_ITEMS (Relacionamento dos itens que um ponto coleta) = {
+    point_id,
+    item_id
+}
+
+
+FUNCIONALIDADES:
+cadastro de um ponto de coleta;
+lista os itens de coleta
+listar Pontos (filtro por estado/cidade/items)
+listar um ponto de coleta específico
+
+
+
+
+RELACIONAMENTOS DE MUITOS PRA MUITOS SEMPRE VÃO REQUERER UMA TABELA ESPECÍFICA PARA ISSO
+
+
+MIGRATIONS = HISTÓRICO DO SEU BANCO DE DADOS
