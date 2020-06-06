@@ -1,0 +1,14 @@
+{	
+	"name":"Mercado do seu zé ramalho",
+	"email":"contato@imperatriz.com.br",
+	"whatsapp":"123453242",
+	"latitude":-46.22352321, 
+	"longitude":-35.34523121,
+	"city":"Rio do Sul",
+	"uf":"UF",
+	"items":[
+		1,
+		2,
+		6
+	]
+}
