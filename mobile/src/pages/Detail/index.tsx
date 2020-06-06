@@ -15,7 +15,7 @@ interface Params {
     point_id: number;
 }
 interface Data {
-    point: {
+    serializedPoint: {
         image:string;
         image_url:string;
         name:string;
@@ -36,8 +36,7 @@ interface Item
 
 const Detail = ()=>{
 
-    const [data, setData] = useState<Data>({} as Data);
-    const [items, setItems] = useState("")
+    const [data, setData] = useState<Data>({} as Data);  
     const navigation = useNavigation();
     const route = useRoute();
 
@@ -47,8 +46,6 @@ const Detail = ()=>{
         api.get(`points/${routeParams.point_id}`)
         .then((response)=>{
             setData(response.data);
-            
-            setItems(JSON.stringify(items));
         })
         .catch(e=>console.log(e));
     },[]);
@@ -58,21 +55,21 @@ const Detail = ()=>{
         navigation.goBack();
     }
 
-    if(!data.point)
+    if(!data.serializedPoint)
     {
         return null;
     }
 
     function handleWhatsapp()
     {
-        Linking.openURL(`whatsapp://send?phone=55${data.point.whatsapp}&text=Tenho interesse sobre coleta de resíduos`);
+        Linking.openURL(`whatsapp://send?phone=55${data.serializedPoint.whatsapp}&text=Tenho interesse sobre coleta de resíduos`);
     }
 
     function handleComposerMail()
     {
         MailComposer.composeAsync({
             subject: "Interesse na coleta de resíduos",
-            recipients: [data.point.email]
+            recipients: [data.serializedPoint.email]
         });
     }
 
@@ -84,10 +81,10 @@ const Detail = ()=>{
                 </TouchableOpacity>
                 <Image 
                     style={styles.pointImage}
-                    source={{uri:data.point.image_url}}
+                    source={{uri:data.serializedPoint.image_url}}
                 />
                 <Text style={styles.pointName}>
-                    {data.point.name}
+                    {data.serializedPoint.name}
                 </Text>
                 <Text  style={styles.pointItems}>
                      {data.items.map((item)=>{return item.title}).join(", ")}
@@ -95,7 +92,7 @@ const Detail = ()=>{
                 
                 <View style={styles.address}>
                     <Text style={styles.addressTitle}>Endereço</Text>
-                    <Text style={styles.addressContent}>{data.point.city}, {data.point.uf}</Text>
+                    <Text style={styles.addressContent}>{data.serializedPoint.city}, {data.serializedPoint.uf}</Text>
                 </View>
             </View>
             <View style={styles.footer}>

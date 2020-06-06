@@ -26,7 +26,7 @@ class PointsController {
         });//`http://localhost:3333/uploads/${item.image}`
 
         
-        return res.json(points); 
+        return res.json(serializedPoints); 
     }
 
     async create(req:Request,res:Response)
